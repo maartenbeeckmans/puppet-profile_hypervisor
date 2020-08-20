@@ -55,8 +55,10 @@ class profile_hypervisor (
     }
   }
 
-  sysctl::value{ 'net.ipv4.ip_forward':
-    value => 1,
+  sysctl{ 'net.ipv4.ip_forward':
+    ensure  => present,
+    value   => 1,
+    comment => 'allow ipv4 forwarding bridge interface',
   }
 
   network::interface{ $phys_interface:
