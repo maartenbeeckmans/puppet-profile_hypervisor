@@ -39,7 +39,7 @@ class profile_hypervisor (
     package { ['cockpit','cockpit-machines']:
       ensure => present,
     }
-    service [ 'cockpit':
+    service { 'cockpit':
       ensure => running,
       enable => true,
     }
