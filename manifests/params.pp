@@ -2,11 +2,11 @@ class profile_hypervisor::params {
   # OS specifiec information
   case $::osfamily {
     'Debian': {
-      $packages = ['qemu', 'qemu-kvm', 'qemu-system', 'qemu-utils', 'libvirt-clients' 'libvirt-deamon-system', 'virtinst']
+      $packages = ['qemu', 'qemu-kvm', 'qemu-system', 'qemu-utils', 'libvirt-clients', 'libvirt-deamon-system', 'virtinst']
       $libvirt_service = 'libvirtd'
     }
     'RedHat': {
-      $packages = ['qemu', 'qemu-kvm', 'qemu-system', 'qemu-utils', 'libvirt-clients' 'libvirt-deamon-system', 'virtinst']
+      $packages = ['qemu', 'qemu-kvm', 'qemu-system', 'qemu-utils', 'libvirt-clients', 'libvirt-deamon-system', 'virtinst']
       $libvirt_service = 'libvirtd'
     }
     default: {
