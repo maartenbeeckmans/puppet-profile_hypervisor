@@ -31,5 +31,5 @@ class profile_hypervisor::params {
 
   # Get first physical interface
   $iface_array = split($::interfaces,',')
-  $phys_interface template("${module_name}/get_physical_interface.erb")
+  $phys_interface = template("${module_name}/get_physical_interface.erb")
 }
