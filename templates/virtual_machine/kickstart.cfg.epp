@@ -57,7 +57,7 @@ lang en_US.UTF-8
 ## Network configuration                               ##
 ##                                                     ##
 #########################################################
-network  --bootproto=static --device=<%= $vm_network_interface%> --gateway=<%= $vm_network_gateway --ip=<%= $vm_network_ip %> --nameserver=<%= $vm_network_nameservers.join(',') %> --netmask=<%= $vm_network_netmask %> --noipv6 --activate
+network  --bootproto=static --device=<%= $vm_network_interface%> --gateway=<%= $vm_network_gateway %> --ip=<%= $vm_network_ip %> --nameserver=<%= $vm_network_nameservers.join(',') %> --netmask=<%= $vm_network_netmask %> --noipv6 --activate
 network  --hostname=<%= $vm_hostname %>
 
 #########################################################
