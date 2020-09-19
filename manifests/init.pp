@@ -44,7 +44,8 @@ class profile_hypervisor (
       enable => true,
     }
     firewall { '200 allow cockpit':
-      dport => 9090,
+      dport  => 9090,
+      action => 'accept',
     }
   }
 
