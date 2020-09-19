@@ -43,8 +43,8 @@ class profile_hypervisor (
       ensure => running,
       enable => true,
     }
-    ::profile::base::firewall::entry { '200 allow cockpit':
-      port => 9090,
+    firewall { '200 allow cockpit':
+      dport => 9090,
     }
   }
 
