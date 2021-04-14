@@ -1,2 +1,22 @@
 ---
+profile_hypervisor::packages:
+  - 'qemu'
+  - 'qemu-kvm'
+  - 'qemu-system'
+  - 'qemu-utils'
+  - 'libvirt-clients'
+  - 'libvirt-deamon-system'
+  - 'virtinst'
+profile_hypervisor::libvirt_service: 'libvirtd'
+profile_hypervisor::physical_interface: 'eth0'
+profile_hypervisor::native_vlan_bridge_name: 'br0'
+profile_hypervisor::br_interfaces:
+  br0:
+    ip_address_cidr: '192.168.101.2/24'
+    gateway: '192.168.101.1'
+  br1:
+    ip_address_cidr: '192.168.102.2/24'
+    gateway: '192.168.102.1'
+    vlan_id: 102
+profile_hypervisor::br_interfaces_defaults: {}
 ...
