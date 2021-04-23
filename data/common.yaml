@@ -4,6 +4,8 @@ profile_hypervisor::packages:
   - 'qemu-system'
   - 'bridge-utils'
   - 'virtinst'
+  - 'libvirt-daemon'
+  - 'libvirt-daemon-system'
   - 'libvirt-clients'
   - 'virt-top'
   - 'libosinfo-bin'

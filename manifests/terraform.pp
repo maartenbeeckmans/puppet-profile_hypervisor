@@ -9,7 +9,7 @@ class profile_hypervisor::terraform (
   accounts::user { 'terraform':
     comment      => 'Terraform user used for libvirt provider',
     create_group => true,
-    groups       => [$libvirt_group],
+    groups       => [$libvirt_group, 'libvirt'],
     password     => $password,
     sshkeys      => [$ssh_key],
   }
