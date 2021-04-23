@@ -2,10 +2,10 @@
 #
 #
 define profile_hypervisor::network::br (
-  Stdlib::IP::Address::CIDR         $ip_address_cidr,
+  Stdlib::IP::Address::V4::CIDR     $ip_address_cidr,
   String                            $physical_interface = $::profile_hypervisor::network::physical_interface,
   String $native_vlan_bridge_name = $::profile_hypervisor::native_vlan_bridge_name,
-  Regexp[/br\d+/]                   $interface_name     = $title,
+  String                            $interface_name     = $title,
   Optional[Integer]                 $vlan_id            = undef,
   Optional[Stdlib::IP::Address::V4] $gateway            = undef,
 ) {
@@ -19,27 +19,30 @@ define profile_hypervisor::network::br (
       enable  => true,
       bridge  => $interface_name,
       type    => 'vlan',
+      method  => 'manual',
       physdev => $physical_interface
     }
 
-    network::interface { "${interface_name}.${vlan_id}":
+    network::interface { $interface_name:
       enable    => true,
       ipaddress => $_ip_address,
       netmask   => $_netmask,
-      type      => 'bridge',
-      bootproto => 'static',
-      vlan      => 'yes',
-      vlan_id   => $vlan_id,
-      bridge    => undef,
+      method    => 'static',
+      bridge_ports => ["${physical_interface}.${vlan_id}"],
+      bridge_stp   => 'off',
+      bridge_fd    => 0,
+      bridge_waitport => 0,
     }
   } else {
     network::interface { $interface_name:
       enable    => true,
       ipaddress => $_ip_address,
       netmask   => $_netmask,
-      type      => 'bridge',
-      bootproto => 'static',
-      bridge    => undef,
+      method    => 'static',
+      bridge_ports => [$physical_interface],
+      bridge_stp   => 'off',
+      bridge_fd    => 0,
+      bridge_waitport => 0,
     }
   }
 
