@@ -13,4 +13,10 @@ class profile_hypervisor::libvirt (
     ensure => running,
     enable => true,
   }
+
+  file { '/etc/libvirt/qemu.conf':
+    ensure => present,
+    source => 'puppet:///modules/profile_hypervisor/qemu.conf',
+    notify => Service[$libvirt_service],
+  }
 }
