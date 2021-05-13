@@ -26,18 +26,21 @@ class profile_hypervisor::lvm (
 
   profile_base::mount { '/var/lib/libvirt/cloudinit_pool':
     device => "/dev/${volume_group}/libvirt_cloudinit_pool",
+    type   => 'ext4',
     owner  => $libvirt_user,
     group  => $libvirt_group,
   }
 
   profile_base::mount { '/var/lib/libvirt/domains_pool':
     device => "/dev/${volume_group}/libvirt_domains_pool",
+    type   => 'ext4',
     owner  => $libvirt_user,
     group  => $libvirt_group,
   }
 
   profile_base::mount { '/var/lib/libvirt/images_pool':
     device => "/dev/${volume_group}/libvirt_images_pool",
+    type   => 'ext4',
     owner  => $libvirt_user,
     group  => $libvirt_group,
   }
