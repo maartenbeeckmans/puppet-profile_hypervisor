@@ -28,9 +28,9 @@ class profile_hypervisor::network (
   kmod::load { '8021q': }
 
   network::interface{ $physical_interface:
-    enable    => true,
-    method    => 'manual',
-    bridge    => $native_vlan_bridge_name,
+    enable => true,
+    method => 'manual',
+    bridge => $native_vlan_bridge_name,
   }
   create_resources(profile_hypervisor::network::br, $br_interfaces, $br_interfaces_defaults)
 }
