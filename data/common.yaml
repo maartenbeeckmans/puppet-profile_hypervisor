@@ -17,5 +17,6 @@ profile_hypervisor::libvirt_group: 'libvirt-qemu'
 
 profile_hypervisor::physical_interface: 'enp2s0'
 profile_hypervisor::native_vlan_bridge_name: 'br0'
+profile_hypervisor::br_interfaces_common: {}
 profile_hypervisor::br_interfaces_defaults: {}
 ...

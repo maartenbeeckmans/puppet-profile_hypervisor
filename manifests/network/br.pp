@@ -47,7 +47,7 @@ define profile_hypervisor::network::br (
   }
 
   if $routes {
-    network::mroutes { $interface_name:
+    network::mroute { $interface_name:
       routes => $routes,
     }
   }

@@ -11,6 +11,7 @@ class profile_hypervisor (
   String        $physical_interface,
   String        $native_vlan_bridge_name,
   Hash          $br_interfaces,
+  Hash          $br_interfaces_common,
   Hash          $br_interfaces_defaults,
 
   String        $terraform_password,
