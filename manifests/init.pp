@@ -21,4 +21,8 @@ class profile_hypervisor (
   include profile_hypervisor::lvm
   include profile_hypervisor::network
   include profile_hypervisor::terraform
+
+  package { ['nvme-cli', 'smartmontools']:
+    ensure => installed,
+  }
 }
