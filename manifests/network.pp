@@ -29,9 +29,12 @@ class profile_hypervisor::network (
   kmod::load { '8021q': }
 
   network::interface{ $physical_interface:
-    enable => true,
-    method => 'manual',
-    bridge => $native_vlan_bridge_name,
+    enable               => true,
+    method               => 'manual',
+    bridge               => $native_vlan_bridge_name,
+    options_extra_debian => {
+      'ethtool-wol' => 'g',
+    },
   }
 
   create_resources(profile_hypervisor::network::br, deep_merge($br_interfaces, $br_interfaces_common), $br_interfaces_defaults)
