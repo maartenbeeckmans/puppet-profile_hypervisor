@@ -34,7 +34,13 @@ class profile_hypervisor::network (
     bridge               => $native_vlan_bridge_name,
     options_extra_debian => {
       'ethtool-wol' => 'g',
+      'up'          => "/sbin/ethtool -s ${physical_interface} wol g",
     },
+  }
+
+  @@profile_proxy::wake_on_lan::host { $facts['networking']['fqdn']:
+    mac => $facts['networking']['interfaces'][$physical_interface]['mac'],
+    ip  => $facts['networking']['interfaces'][$native_vlan_bridge_name]['ip'],
   }
 
   create_resources(profile_hypervisor::network::br, deep_merge($br_interfaces, $br_interfaces_common), $br_interfaces_defaults)
